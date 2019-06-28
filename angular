@@ -1,0 +1,73 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  styleUrls: ['app.component.scss'],
+  template: `
+    <div class="app">
+    <input type="text"  [(ngModel)]="name"/>
+    <div *ngIf="name.length>0">
+    Searching for {{name}}
+    </div>
+    <ul>
+    <li *ngFor="let f of friends">
+    {{f}}
+    </li>
+    </ul>
+
+      <h1>{{name}}</h1>
+      <h1 [innerHTML]="name"></h1>
+      <div>
+        {{numberone + numbertwo + age}}
+      </div>
+      <div>
+        {{(ishappy) ? ':)' : ':('}}
+      </div>
+      <input type="text" [value]="name" (input)="handleInput($event)"/>
+      
+      <button (click)="handle_Click($event)">change name</button>
+      <div>{{name}}</div>
+     <div>{{num}}</div>
+      <button (click)="handleClick($event)">Increase</button>
+      <button (click)="handleclick($event)" disabled={{dis}}>Decrease</button>
+
+    </div>
+
+  `
+})
+export class AppComponent {
+  //name1:string="biuhdkw";
+  friends:string[];
+  
+  name:string;
+  num:number=6;
+  numberone:number=1;
+  numbertwo:number=6;
+  ishappy:boolean=true;
+  age:number=15;
+  dis:string;
+  constructor(){
+    this.name="bin";
+    this.friends=["sri","bindu"]
+  }
+  handleInput (event:any){
+    this.name=event.target.value;
+  }
+handle_Click (event:any){
+  this.name="bin";
+}
+handleClick(event:number){
+  if(this.num>=0)
+  {
+    this.dis=""
+  }
+  this.num++;
+}
+handleclick (event:any){
+  
+  if(this.num==1)
+  {
+    this.dis="disabled"
+  }this.num--;
+}
+}
