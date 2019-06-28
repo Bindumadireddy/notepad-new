@@ -1,0 +1,211 @@
+//html
+
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="main">
+    <h1><span style='margin-right:14em;'></span>Register</h1>
+     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+     <!-- <form [formGroup]="registerForm" novalidate>  -->
+      <div class="formGroup">
+      <span style='margin-right:20em;'></span> Full Name<span style='margin-right:12em;'></span> Date of birth<br>
+    </div>
+      <span style='margin-right:20em;'></span><input type="text" formControlName="FullName"  class="form-control" required >
+      <span style='margin-right:6em;'></span><input type="text" formControlName="Dob" class="form-control" required >
+  
+    <div *ngIf="registerForm.controls['FullName'].invalid && (registerForm.controls['FullName'].dirty || registerForm.controls['FullName'].touched)"
+      class="alert alert-danger"> 
+      <div *ngIf="registerForm.controls['FullName'].errors.required">
+          <span style='margin-right:20em;'></span> <b> Name is required.</b>
+      </div>
+      <div *ngIf="registerForm.controls['FullName'].errors.minlength">
+          <span style='margin-right:20em;'></span> <b> Name must be at least 4 characters long.</b>
+      </div>
+    </div>
+   
+    <div *ngIf="registerForm.controls['Dob'].invalid && (registerForm.controls['Dob'].dirty || registerForm.controls['Dob'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="registerForm.controls['Dob'].errors.required">
+        <span style='margin-right:37em;'></span>  <b>Date of Birth is required.</b>
+    </div>
+    <div *ngIf="registerForm.controls['Dob'].errors.pattern">
+        <span style='margin-right:37em;'></span> <b> dd/mm/yyyy is the format.</b>
+     </div></div><br><br>
+     <div class="formGroup">
+     <span style='margin-right:20em;'></span> Email Address <span style='margin-right:11em;'></span> Phone Number <br>
+  </div>
+  
+    <span style='margin-right:20em;'></span> <input type="email" formControlName="Email" class="form-control" required >
+    <span style='margin-right:6em;'></span><input type="number" formControlName="Number"  class="form-control" required >
+  
+    <div  *ngIf="registerForm.controls['Email'].invalid && (registerForm.controls['Email'].dirty || registerForm.controls['Email'].touched)"
+      class="alert alert-danger">
+      <div *ngIf="registerForm.controls['Email'].errors.required">
+          <span style='margin-right:20em;'></span> <b>Mail is required.</b>
+      </div>
+       <div *ngIf="registerForm.controls['Email'].errors.pattern">
+          <span style='margin-right:20em;'></span> <b>Invalid Mail.</b>
+      </div>
+       <div *ngIf="registerForm.controls['Email'].errors.minlength">
+          <span style='margin-right:20em;'></span><b> Mail must be at least 10 characters long.</b>
+      </div>
+    </div>
+      
+    
+    
+    <div  *ngIf="registerForm.controls['Number'].invalid && (registerForm.controls['Number'].dirty || registerForm.controls['Number'].touched)"
+      class="alert alert-danger">
+    <div *ngIf="registerForm.controls['Number'].errors.required">
+        <span style='margin-right:37em;'></span> <b> Phone Number is required.</b>
+      </div>
+      <div *ngIf="registerForm.controls['Number'].errors.pattern ">
+          <span style='margin-right:37em;'></span>  <b>Invalid Phone Number.</b>
+        </div>
+        
+      </div><br><br>
+
+      <div class="formGroup">
+  
+    <span style='margin-right:20em;'></span>Password <span style='margin-right:13em;'></span>Tell us about yourself <br>
+  
+  </div>
+    <span style='margin-right:20em;'></span><input type="password" formControlName="Password"  class="form-control" required >
+    <span style='margin-right:6em;'></span><textarea rows="1" cols="10" formControlName="yourself" class="form-control" required ></textarea>
+  
+    <div  *ngIf="registerForm.controls['Password'].invalid && (registerForm.controls['Password'].dirty || registerForm.controls['Password'].touched)"
+      class="alert alert-danger">
+   <div *ngIf="registerForm.controls['Password'].errors.required">
+      <span style='margin-right:20em;'></span>  <b>Password is required.</b>
+    </div>
+    <div *ngIf="registerForm.controls['Password'].errors.minlength">
+        <span style='margin-right:20em;'></span> <b> Password must be at least 10 characters long.</b>
+   </div>
+   <div *ngIf="registerForm.controls['Password'].errors.pattern">
+      <span style='margin-right:20em;'></span><b>Invalid Password.</b>
+  </div>
+   </div>
+    
+    <div  *ngIf="registerForm.controls['yourself'].invalid && (registerForm.controls['yourself'].dirty || registerForm.controls['yourself'].touched)"
+      class="alert alert-danger">
+     <div *ngIf="registerForm.controls['yourself'].errors.required">
+        <span style='margin-right:37em;'></span> <b> Describe yourself.</b>
+      </div>
+      <div *ngIf="registerForm.controls['yourself'].errors.minlength">
+          <span style='margin-right:37em;'></span> <b> Should be atleast 20 characters long.</b>
+     </div>
+      </div><br><br>
+  
+      <div class="formGroup">
+  <span style='margin-right:20em;'></span><select formControlName="cities" class="form-control" required >
+  <option value="Telangana">Telangana</option>
+  <option value="Banglore">Banglore</option>
+  <option value="visakhapatnam">Visakhapatnam</option></select>
+  <span style='margin-right:10em;'></span><input type="radio" value="male" formControlName="gender" class="form-control" required>Male
+  <input type="radio" value="female" formControlName="gender" class="form-control" required >Female<br>
+      </div>
+  <div  *ngIf="registerForm.controls['cities'].invalid && (registerForm.controls['cities'].dirty || registerForm.controls['cities'].touched)">
+    <div *ngIf="registerForm.controls['cities'].errors.required">
+        <span style='margin-right:20em;'></span>  <b>Dropdown is required.</b>
+     </div>
+     </div>
+  
+  
+  <div  *ngIf="registerForm.controls['gender'].invalid && (registerForm.controls['gender'].dirty || registerForm.controls['gender'].touched)">
+      <div *ngIf="registerForm.controls['gender'].errors.required">
+         <span style='margin-right:37em;'></span>  <b>Gender is required.</b>
+       </div>
+       </div>
+       <br><br>
+  
+       <div class="formGroup">
+  <span style='margin-right:20em;'></span><input type="checkbox" class="form-control" value="I want to receive email about updates to website" 
+  formControlName="box">I want to receive email about updates to website</div>
+   <div  *ngIf="registerForm.controls['box'].invalid && (registerForm.controls['box'].dirty || registerForm.controls['box'].touched)"
+      class="alert alert-danger">
+     <div *ngIf="registerForm.controls['box'].errors.required">
+        <span style='margin-right:20em;'></span> <b> checkbox is required.</b>
+      </div>
+      </div>
+      <br><br> 
+       <span style='margin-right:31em;'></span><button type="submit" [disabled]="!registerForm.valid">Register</button> 
+       <!-- <span style='margin-right:31em;'></span><button type="submit"  class="button" [disabled]="registerForm.pristine || registerForm.invalid">Register</button>  -->
+  </form>
+  </div>
+
+
+//component.ts
+
+
+import { Component } from '@angular/core';
+import { FormGroup, FormControl , FormBuilder ,Validators } from '@angular/forms';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+ registerForm:FormGroup;
+  constructor(private fb: FormBuilder) {
+    this.Form();
+    }
+    Form(){
+  this.registerForm = this.fb.group({
+    FullName: ['',[Validators.required,Validators.minLength(5)]],
+    Dob: ['',[Validators.required,Validators.pattern("[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}")]],
+    Email:['',[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"),Validators.minLength(10)]],
+    Number:['',[Validators.required,Validators.pattern("[0-9]{10}")]],
+    Password:['',[Validators.required,Validators.minLength(8),Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+    yourself:['',[Validators.required,Validators.minLength(20)]],
+    cities:['',Validators.required],
+    gender:['',Validators.required],
+    box:['',Validators.requiredTrue]
+  });
+  }
+  
+  onSubmit(){
+    // alert(JSON.stringify(this.content) )
+    console.log(this.registerForm.value);
+  }
+}
+
+ //module.ts
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+//css
+
+#main{
+    margin:auto;
+    //border:1px solid black;
+    height:600px;
+    width:950px;
+    background-color:powderblue;
+}
+b{
+    color:red;
+}
+button{
+    background-color: pink;
+    width:90px;
+}
