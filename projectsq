@@ -1,0 +1,58 @@
+MariaDB [project]> desc producer;
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| id              | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name            | varchar(200) | NO   |     | NULL    |                |
+| email           | varchar(200) | YES  |     | NULL    |                |
+| password_hash   | varchar(100) | YES  |     | NULL    |                |
+| twitter_name    | varchar(200) | YES  |     | NULL    |                |
+| soundcloud_name | varchar(200) | YES  |     | NULL    |                |
+| status          | varchar(100) | YES  |     | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+MariaDB [project]> insert into producer(name,email,password_hash,twitter_name,soundcloud_name,status) values('bindu','bindureddy6@gmail.com','bin123','bindureddy','binduu','none'),('srii','srii16@gmail.com','sri123','srivenkat','sriii','none'),('mani','mani123@gmail.com','mani123','kanthamani','maniii','none');
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [project]> select * from producer;
++----+-------+-----------------------+---------------+--------------+-----------------+--------+
+| id | name  | email                 | password_hash | twitter_name | soundcloud_name | status |
++----+-------+-----------------------+---------------+--------------+-----------------+--------+
+|  7 | bindu | bindureddy6@gmail.com | bin123        | bindureddy   | binduu          | none   |
+|  8 | srii  | srii16@gmail.com      | sri123        | srivenkat    | sriii           | none   |
+|  9 | mani  | mani123@gmail.com     | mani123       | kanthamani   | maniii          | none   |
++----+-------+-----------------------+---------------+--------------+-----------------+--------+
+3 rows in set (0.00 sec)
+
+MariaDB [project]> insert into producer(name,email,password_hash,twitter_name,soundcloud_name,status) values('sushh','sushmi123@gmail.com','sush123',ushasush','sushmii','none');
+    '>
+    '> ;
+    '> Bye
+Ctrl-C -- exit!
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 111
+Server version: 10.1.40-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use project
+Database changed
+MariaDB [project]> insert into producer(name,email,password_hash,twitter_name,soundcloud_name,status) values('sushh','sushmi123@gmail.com','sush123','ushasush','sushmii','none');
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [project]> select * from producer;
++----+-------+-----------------------+---------------+--------------+-----------------+--------+
+| id | name  | email                 | password_hash | twitter_name | soundcloud_name | status |
++----+-------+-----------------------+---------------+--------------+-----------------+--------+
+|  7 | bindu | bindureddy6@gmail.com | bin123        | bindureddy   | binduu          | none   |
+|  8 | srii  | srii16@gmail.com      | sri123        | srivenkat    | sriii           | none   |
+|  9 | mani  | mani123@gmail.com     | mani123       | kanthamani   | maniii          | none   |
+| 10 | sushh | sushmi123@gmail.com   | sush123       | ushasush     | sushmii         | none   |
++----+-------+-----------------------+---------------+--------------+-----------------+--------+
+4 rows in set (0.00 sec)
