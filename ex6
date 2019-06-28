@@ -1,0 +1,142 @@
+//html
+
+<!--The content below is only a placeholder and can be replaced.-->
+
+
+ <div id="total" style:text-align="center">
+    <caption>store </caption>
+   
+  <div class="left">
+      <table id="lef">
+        <caption>catalog</caption>
+     <tr  *ngFor="let item of array1">
+       
+       <td>{{item.product}}<br>Rs.{{item.price}}&nbsp;<button (click)="addcart(item)">add to cart</button></td>
+        </tr>
+        </table>
+  </div>
+  
+  <div class="right" >
+      <table id="rig">
+        <caption>cart</caption>
+      <tr *ngFor="let item of array2;let i=index">
+     {{item.product}}<br>Rs.{{item.price}}&nbsp;<button (click)="remove(i,item)">remove</button>
+      </tr>
+      
+    </table>
+    <br><br><br><br><br>
+    <table id="righth">
+      
+      <caption>checkout</caption>
+      <tr>
+         <td>Order Total:Rs.{{n}}</td>
+          <button (click)="place($event)">Place order</button>
+
+      </tr>
+
+      </table>
+
+  </div>
+</div>
+
+//.ts
+
+import { Component } from '@angular/core';
+import { isNgTemplate } from '@angular/compiler';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  array1:any=[{product:"Shirt",price:100},{product:"Jean",price:150},{product:"Saree",price:250}];
+  array2:any=[];
+  product:string='';
+  price:number;
+  n:number=0;
+ addcart(item)
+  {
+    
+    this.array2.push(item);
+    this.n+=item.price;
+    
+  }
+  remove(i,item)
+  {
+    this.array2.splice(i,1);
+    this.n-=item.price;
+    
+  }
+  place(event)
+  {
+    if(this.n!=0)
+    {
+      alert("order is placed");
+    }
+    else{
+      alert("please place order");
+    }
+  }
+}
+
+//.css
+
+#total{
+    float:left;
+    border:1px solid black;
+    width:450px;
+    height:650px;
+    background-color:aliceblue;
+    
+}
+.left{
+    #lef,tr{
+    margin:auto;
+    float:left;
+    border:1px solid black;
+    width:180px;
+    height:200px;
+    background-color:powderblue;
+    
+    }
+    
+}
+.right{
+#rig,tr{
+    margin:auto;
+    float:right;
+    border:1px solid black;
+    background-color: blanchedalmond;
+    width:150px;
+    height:130px;
+
+}
+#righth{
+    margin:auto;
+    float:right;
+    border:1px solid black;
+   
+}}
+//
+.module
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FormsModule} from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
