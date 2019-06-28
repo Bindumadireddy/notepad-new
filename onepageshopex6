@@ -1,0 +1,125 @@
+<!-- app component.html-->
+<html>
+  <head></head>
+  <body>
+    <h1>Store</h1>
+    <div class="left">
+    <table>
+      <caption>catalog</caption>
+      <tr *ngFor='let i of items'>
+        <td>item:{{i.product}}<br> Rs{{i.price}} <button (click)="add(i)">Add to cart</button></td>
+      </tr>
+    </table>
+    </div>
+   
+    <div><h5 class="cart">Cart</h5><table><cart [order]='item' [total]="n" (total_remove)="totalRemove($event)"></cart></table></div>
+    
+    <div><app-checkout [total]="n"></app-checkout></div>
+    <!-- <table>
+      <caption>Check Out</caption>
+      <tr>
+        <td>order total:{{n}}<br><button (click)="place($event)">place order</button></td>
+      </tr>
+  </table> -->
+    
+  </body>
+</html>
+
+
+<!--app componenty.ts-->
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  //title = 'onepageshop';
+  n:number=0;
+  removeTotal:number;
+  items=[
+    {product:'levis jeans',price:150},
+    {product:'arrow shirt',price:100},
+    {product:'blue sarry',price:200},
+    {product:'nike shoe',price:250}
+  ];
+  item:object[]=[];
+  add(event){
+    this.item.push(event);
+    this.n+=event.price;
+  }
+  totalRemove(event:number){
+    //console.log(event);
+    //this.removeTotal=event;
+    this.n=event;
+  }
+}
+
+<!-- cart.ts-->
+
+import { Component,Input, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+
+@Component({
+    selector:'cart',
+    templateUrl:'./cart.html',
+    styleUrls: ['./cart.scss']
+})
+
+export class cartComponent {
+    @Input() order:any;
+    //n:number;
+    @Input() total:number;
+
+    @Output() total_remove:EventEmitter<any> = new EventEmitter();
+     remove(i,item){
+        this.order.splice(i,1);
+        this.total-=item.price;
+       // console.log(this.total);
+       this.total_remove.emit(this.total);
+      }
+}
+
+<!-- cart.html-->
+
+<div class="right">
+  
+    <table>
+        <!-- <caption>Cart</caption> -->
+        
+        <tr *ngFor="let item of order;let i=index">
+          <td>item:{{item.product}}<br>Rs-{{item.price}}<button (click)="remove(i,item)">remove</button></td>
+          </tr>
+    </table>
+  </div>
+
+<!--checkout.ts-->
+
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-checkout',
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.scss']
+})
+export class CheckoutComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+    
+  }
+@Input() total:number;
+}
+
+
+<!-- checkout.html-->
+
+<div><cart [order]='item'></cart></div>
+    <table>
+      <caption>Check Out</caption>
+      <tr>
+        <td>order total:{{total}}<br><button (click)="place($event)">place order</button></td>
+      </tr>
+  </table>
